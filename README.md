@@ -15,6 +15,9 @@ gulp test
 visit [http://localhost:8080/](http://localhost:8080/)
 
 #deployment to Redhat OpenShift
+
+[Deployed Sample](http://iso-klofx.rhcloud.com/)
+
 This is a short guide how to get this run on Openshift and to take advantage running nodejs gear with ES6 and JSX without compilation. Replace 'myapp' with your preferred application name.
 
 ```
