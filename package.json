@@ -5,7 +5,7 @@
     "scripts": {
         "test": "gulp test",
         "start": "./node_modules/.bin/babel-node server.js",
-        "build": "webpack --progress --colors",
+        "postinstall": "webpack --progress --colors",
         "clean": "rm dist/bundle.js"
     },
     "main": "server.js",
