@@ -57,6 +57,9 @@ var App = React.createClass({
         if (this.state.currentView == 'about') {
             view = <About firedata = {this.state.firedata}/> ;
         }
+        if (this.state.currentView == 'fakeroute') {
+            view = <About firedata = {this.state.firedata}/> ;
+        }
 
         return (
       		<div>

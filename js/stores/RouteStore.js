@@ -43,6 +43,7 @@ class RouteStore {
             .bind(this));
     }
     appAbout(ac) {
+
         return ac.getFirebase()
             .then(function() {
                 this.setState({

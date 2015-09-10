@@ -18,7 +18,7 @@ visit [http://localhost:8080/](http://localhost:8080/)
 
 [Deployed Sample](http://iso-klofx.rhcloud.com/)
 
-This is a short guide how to get this run on Openshift and to take advantage running nodejs gear with ES6 and JSX without compilation. Replace 'myapp' with your preferred application name.
+This is a short guide how to get this run on Openshift and to take advantage running nodejs gear with Babel which allow ES6 and JSX transpiling on the fly. Replace 'myapp' with your preferred application name.
 
 ```
 rhc app create myapp nodejs-0.10 --from-code=git://github.com/syarul/simply-alt-iso.git
@@ -28,17 +28,22 @@ rhc app create myapp nodejs-0.10 --from-code=git://github.com/syarul/simply-alt-
 few notes:
 this two setting in package.json  are important for this set up to work 
 ```
+...
 "scripts": {
-"start": "./node_modules/.bin/babel-node server.js"
+	"start": "./node_modules/.bin/babel-node server.js"
 },
 "main": "server.js",
+...
 ```
-in .openshift/markers folder, an empty file name with 'use_npm' is a must to disable nodejs supervisor.
+in .openshift/markers folder, create an empty file name with 'use_npm', this is to disable nodejs supervisor which the default app-deployment execution.
 
-Finally in action_hooks create a file name 'pre_start_nodejs' and add this line
+Finally in .openshift/action_hooks create a file name 'pre_start_nodejs' and add this line. 
 ```
 export HOME=${OPENSHIFT_REPO_DIR}
 ```
+Basically this will allow you to refer the repo directory instead of the deployed directory. By default Openshift bootstrap your repo directory into another deployment directory which has bare minimum to run a client side application. So for isomorphic application you want every part of your repo to be intact. With it you can do sort of thing that you do on local development like running test suite, gulp/grunt, transpiling ect.
+
+All in all if you create your Openshift app from this repo git code it's already has the pre-setup to make it work with has been said above.
 
 #todo
 
